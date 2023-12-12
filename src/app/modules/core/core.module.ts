@@ -1,13 +1,13 @@
+/* eslint-disable prettier/prettier */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { MaterialModule } from '../shared/material/material.module';
 
 @NgModule({
   declarations: [HeaderComponent],
-  imports: [CommonModule, MatButtonModule, MatToolbarModule, RouterModule],
+  imports: [CommonModule, MaterialModule, RouterModule],
   exports: [HeaderComponent],
 })
 export class CoreModule {}
