@@ -14,7 +14,18 @@
         />
       </mat-form-field>
     </div>
-
+    <ng-container
+      *ngIf="
+        f.controls?.['username']?.invalid &&
+        f.controls?.['username']?.touched &&
+        f.controls?.['username']?.dirty
+      "
+    >
+      <app-alert
+        *ngIf="f.controls?.['username']?.errors"
+        [text]="'This field should have 4-30 charaters'"
+      ></app-alert>
+    </ng-container>
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Enter your password</mat-label>
@@ -36,9 +47,33 @@
         </button>
       </mat-form-field>
     </div>
+    <ng-container
+      *ngIf="
+        f.controls?.['password']?.invalid &&
+        (f.controls?.['password']?.touched || f.controls?.['password']?.dirty)
+      "
+    >
+      <app-alert
+        *ngIf="f.controls?.['password']?.errors"
+        [text]="'This field cannot be empty'"
+      ></app-alert>
+    </ng-container>
 
     <div class="d-flex justify-content-end">
-      <button mat-raised-button color="primary">Submit</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!f.valid"
+      >
+        Submit
+      </button>
     </div>
+    <div>
+      <p class="text-center">
+        Don't have an account? <a routerLink="/register">Register!</a>
+      </p>
+    </div>
+    <app-alert *ngIf="errorMessage" [text]="errorMessage"></app-alert>
   </form>
 </div>

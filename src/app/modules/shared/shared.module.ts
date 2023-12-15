@@ -4,11 +4,10 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertComponent } from './components/alert/alert.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AlertComponent
-  ],
+  declarations: [AlertComponent],
   imports: [CommonModule],
   exports: [
     CommonModule,
@@ -16,6 +15,8 @@ import { AlertComponent } from './components/alert/alert.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    AlertComponent,
+    HttpClientModule,
   ],
 })
 export class SharedModule {}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserLoginData } from 'app/modules/core/models/user.model';
+import { AuthService } from 'app/modules/core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,19 @@ export class LoginComponent {
     username: '',
     password: '',
   };
+  errorMessage = '';
+  constructor(private authService: AuthService) {}
   onLogin() {
-    return this;
+    this.authService.login(this.userData).subscribe({
+      next: (value) => {
+        console.log(value);
+        if (value.length === 0) {
+          this.errorMessage = 'This user does not exist';
+        }
+      },
+      error: (err) => {
+        this.errorMessage = 'Error occurd';
+      },
+    });
   }
 }

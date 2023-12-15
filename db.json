@@ -3,8 +3,8 @@
     {
       "id": 1,
       "email": "json-server",
-      "password": "typicode",
-      "username": "test123"
+      "password": "1234",
+      "username": "test"
     }
   ],
   "clients": [
