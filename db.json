@@ -5,6 +5,18 @@
       "email": "json-server",
       "password": "1234",
       "username": "test"
+    },
+    {
+      "email": "test@gmial.com",
+      "username": "testowy",
+      "password": "12345",
+      "id": 2
+    },
+    {
+      "email": "a@gmail.com",
+      "username": "Andrzej",
+      "password": "12345",
+      "id": 3
     }
   ],
   "clients": [

@@ -23,7 +23,7 @@ export class LoginComponent {
           this.errorMessage = 'This user does not exist';
         }
       },
-      error: (err) => {
+      error: () => {
         this.errorMessage = 'Error occurd';
       },
     });

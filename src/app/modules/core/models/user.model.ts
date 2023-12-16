@@ -5,9 +5,13 @@ export interface UserLoginData {
 export interface GetUsersResponse {
   id: number;
   email: string;
-  password: string;
   username: string;
+  password: string;
 }
+
+export type PostUserResponse = GetUsersResponse;
+
+export type PostUser = Omit<GetUsersResponse, 'id'>;
 
 export class User {
   constructor(
