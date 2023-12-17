@@ -12,9 +12,9 @@ export class ClientsService {
 
   constructor(private http: HttpClient) {}
 
-  getClient(): Observable<Client[]> {
+  getClients(): Observable<Client[]> {
     return this.http
-      .get<ClientResponse[]>(`${this.apiUrl}`)
+      .get<ClientResponse[]>(`${this.apiUrl}/clients`)
       .pipe(
         map((clients) =>
           clients.map(

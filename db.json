@@ -28,6 +28,24 @@
       "phone": "777445666",
       "address": "City ul. Street 12",
       "postcode": "11-111"
+    },
+    {
+      "id": 2,
+      "firstname": "Test2",
+      "surname": "Testowy",
+      "email": "test@test.pl",
+      "phone": "777445666",
+      "address": "City ul. Street 12",
+      "postcode": "11-111"
+    },
+    {
+      "id": 3,
+      "firstname": "Test3",
+      "surname": "Testowy",
+      "email": "test@test.pl",
+      "phone": "777445666",
+      "address": "City ul. Street 12",
+      "postcode": "11-111"
     }
   ]
 }
