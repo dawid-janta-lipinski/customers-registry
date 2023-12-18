@@ -1,0 +1,22 @@
+<main>
+  <h2 class="mt-5">Client data:</h2>
+  <div *ngIf="client" class="client-data">
+    <h3>{{ client.firstname }} {{ client.surname }}</h3>
+    <div class="data-row">
+      <p><b>Email:</b></p>
+      <p>{{ client.email }}</p>
+    </div>
+    <div class="data-row">
+      <p><b>Phone:</b></p>
+      <p>{{ client.phone }}</p>
+    </div>
+    <div class="data-row">
+      <p><b>Address:</b></p>
+      <p>{{ client.address }}</p>
+    </div>
+    <div class="data-row">
+      <p><b>Postcode:</b></p>
+      <p>{{ client.postcode }}</p>
+    </div>
+  </div>
+</main>
