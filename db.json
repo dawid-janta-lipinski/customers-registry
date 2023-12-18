@@ -46,6 +46,24 @@
       "phone": "777445666",
       "address": "City ul. Street 12",
       "postcode": "11-111"
+    },
+    {
+      "firstname": "",
+      "surname": "",
+      "email": "dc",
+      "phone": "",
+      "address": "",
+      "postcode": "",
+      "id": 4
+    },
+    {
+      "firstname": "Dawid",
+      "surname": "Janta Lipiński",
+      "email": "djantalipinski@gmail.com",
+      "phone": "787220938",
+      "address": "New Village",
+      "postcode": "11-111",
+      "id": 5
     }
   ]
 }

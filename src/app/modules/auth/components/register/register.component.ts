@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostUser } from 'app/modules/core/models/user.model';
 import { AuthService } from 'app/modules/core/services/auth.service';
+import { FormsService } from 'app/modules/core/services/forms.service';
 
 @Component({
   selector: 'app-register',
@@ -43,6 +44,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private formsSerivce: FormsService,
   ) {}
 
   get controls() {
@@ -58,18 +60,9 @@ export class RegisterComponent implements OnInit {
   }
 
   getErrorMessage(control: FormControl) {
-    if (control.hasError('required')) {
-      return 'You must enter a value';
-    }
-    if (control.hasError('minLength')) {
-      return 'This field should have min 5 characters';
-    }
-    if (control.hasError('maxLength')) {
-      return 'This field should have max 50 characters';
-    }
-
-    return control.hasError('email') ? 'Not a valid email' : '';
+    return this.formsSerivce.getErrorMessage(control);
   }
+
   onRegister() {
     const userData: PostUser = this.registerForm.getRawValue();
     this.authService.register(userData).subscribe({
@@ -80,6 +73,6 @@ export class RegisterComponent implements OnInit {
         this.errorMessage = 'Error occurd';
       },
     });
-    console.log(this.registerForm.getRawValue());
+    //console.log(this.registerForm.getRawValue());
   }
 }

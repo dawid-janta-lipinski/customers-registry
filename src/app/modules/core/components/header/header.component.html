@@ -4,7 +4,8 @@
     <span class="spacer"></span>
     <button mat-button routerLink="/">Homepage</button>
     <button mat-button routerLink="/login" *ngIf="!user">Login</button>
-    <button mat-button routerLink="/clients">Cilents</button>
+    <button mat-button routerLink="/clients">Clients</button>
+    <button mat-button routerLink="/clients/add">Add new Client</button>
     <button mat-button (click)="logout()" *ngIf="user">Logout</button>
   </mat-toolbar>
 </nav>
