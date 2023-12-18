@@ -21,3 +21,8 @@ export class Client implements ClientResponse {
     public postcode: string,
   ) {}
 }
+
+export interface GetClientsResponse {
+  clients: Client[];
+  totalCount: number;
+}
