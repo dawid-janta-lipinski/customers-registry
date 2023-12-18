@@ -22,20 +22,19 @@ export class ClientsService {
     itemsPerPage: number,
     sortDirection: string,
     sortColumnName: string,
+    value = '',
   ): Observable<GetClientsResponse> {
-    let params;
+    let params = new HttpParams()
+      .append('_page', pageIndex)
+      .append('_limit', itemsPerPage);
     if (sortColumnName) {
-      params = new HttpParams()
-        .append('_page', pageIndex)
-        .append('_limit', itemsPerPage)
+      params = params
         .append('_sort', sortColumnName)
         .append('_order', sortDirection);
-    } else {
-      params = new HttpParams()
-        .append('_page', pageIndex)
-        .append('_limit', itemsPerPage);
     }
-
+    if (value) {
+      params = params.append('firstname_like', value);
+    }
     return this.http
       .get<ClientResponse[]>(`${this.apiUrl}/clients`, {
         observe: 'response',
@@ -44,6 +43,7 @@ export class ClientsService {
       .pipe(
         map((response) => {
           if (!response.body) return { clients: [], totalCount: 0 };
+
           const clientsArr: Client[] = response.body.map(
             ({ id, firstname, surname, email, phone, address, postcode }) =>
               new Client(
