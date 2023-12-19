@@ -1,5 +1,5 @@
 <div class="client-form-wrapper mt-3">
-  <h2>Add new client</h2>
+  <h2 *ngIf="editMode">Add new client</h2>
   <form [formGroup]="clientForm" (ngSubmit)="onAddClient()">
     <div>
       <mat-form-field appearance="fill">
@@ -57,12 +57,22 @@
     </div>
     <div class="d-flex justify-content-end">
       <button
+        *ngIf="editMode"
+        mat-raised-button
+        color="warn"
+        (click)="emitCloseDialog()"
+        type="button"
+      >
+        Close
+      </button>
+      <button
         mat-raised-button
         color="primary"
         type="submit"
         [disabled]="clientForm.invalid"
+        class="mx-1"
       >
-        Add Client
+        {{ editMode ? 'Edit Client' : 'Add Client' }}
       </button>
     </div>
     <app-alert *ngIf="succesfullyAddedClient" [text]="errorMessage"></app-alert>

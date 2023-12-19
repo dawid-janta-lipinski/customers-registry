@@ -18,5 +18,13 @@
       <p><b>Postcode:</b></p>
       <p>{{ client.postcode }}</p>
     </div>
+    <div class="mb-3 w-75 d-flex justify-content-evenly">
+      <button mat-raised-button color="primary" (click)="openEditDialog()">
+        Edit Client
+      </button>
+      <button mat-raised-button color="warn" (click)="openDeleteDialog()">
+        Delete Client
+      </button>
+    </div>
   </div>
 </main>

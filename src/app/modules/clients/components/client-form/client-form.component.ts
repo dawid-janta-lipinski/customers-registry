@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PostClientForm } from 'app/modules/core/models/client.model';
+import { Client, PostClientForm } from 'app/modules/core/models/client.model';
 import { ClientsService } from 'app/modules/core/services/clients.service';
 import { FormsService } from 'app/modules/core/services/forms.service';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-client-form',
@@ -14,6 +15,23 @@ export class ClientFormComponent implements OnInit {
   clientForm!: FormGroup<PostClientForm>;
   errorMessage = '';
   succesfullyAddedClient = false;
+  @Input() editMode = false;
+  @Input() client!: Client;
+  @Output() closeDialog = new EventEmitter<void>();
+  observer: Observer<unknown> = {
+    next: () => {
+      this.errorMessage = '';
+      if (this.editMode) {
+        this.emitCloseDialog();
+      }
+      this.succesfullyAddedClient = true;
+      this.router.navigate(['clients']);
+    },
+    error: () => {
+      this.errorMessage = 'Error occurd';
+    },
+    complete: () => {},
+  };
 
   constructor(
     private clientService: ClientsService,
@@ -30,27 +48,27 @@ export class ClientFormComponent implements OnInit {
   }
   private initForm() {
     this.clientForm = new FormGroup<PostClientForm>({
-      firstname: new FormControl('', {
+      firstname: new FormControl(this.editMode ? this.client.firstname : '', {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      surname: new FormControl('', {
+      surname: new FormControl(this.editMode ? this.client.surname : '', {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      email: new FormControl('', {
+      email: new FormControl(this.editMode ? this.client.email : '', {
         nonNullable: true,
         validators: [Validators.required, Validators.email],
       }),
-      phone: new FormControl('', {
+      phone: new FormControl(this.editMode ? this.client.phone : '', {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      address: new FormControl('', {
+      address: new FormControl(this.editMode ? this.client.address : '', {
         nonNullable: true,
         validators: [Validators.required],
       }),
-      postcode: new FormControl('', {
+      postcode: new FormControl(this.editMode ? this.client.postcode : '', {
         nonNullable: true,
         validators: [Validators.required],
       }),
@@ -61,17 +79,17 @@ export class ClientFormComponent implements OnInit {
   }
 
   onAddClient() {
-    this.clientService.postClient(this.clientForm.getRawValue()).subscribe({
-      next: () => {
-        this.succesfullyAddedClient = true;
-        this.errorMessage = 'Succesfully added new client!';
-        setTimeout(() => {
-          this.router.navigate(['clients']);
-        }, 3000); // Delay navigation by 3 seconds
-      },
-      error: () => {
-        this.errorMessage = 'Error occurd';
-      },
-    });
+    if (this.editMode) {
+      this.clientService
+        .putClient(this.clientForm.getRawValue(), this.client.id)
+        .subscribe(this.observer);
+      return;
+    }
+    this.clientService
+      .postClient(this.clientForm.getRawValue())
+      .subscribe(this.observer);
+  }
+  emitCloseDialog() {
+    this.closeDialog.emit();
   }
 }

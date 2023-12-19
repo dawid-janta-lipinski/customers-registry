@@ -30,15 +30,6 @@
       "postcode": "11-111"
     },
     {
-      "id": 2,
-      "firstname": "Test2",
-      "surname": "Testowy",
-      "email": "test@test.pl",
-      "phone": "777445666",
-      "address": "City ul. Street 12",
-      "postcode": "11-111"
-    },
-    {
       "id": 3,
       "firstname": "Test3",
       "surname": "Testowy",
@@ -48,22 +39,31 @@
       "postcode": "11-111"
     },
     {
-      "firstname": "",
-      "surname": "",
-      "email": "dc",
-      "phone": "",
-      "address": "",
-      "postcode": "",
-      "id": 4
-    },
-    {
       "firstname": "Dawid",
       "surname": "Janta Lipiński",
       "email": "djantalipinski@gmail.com",
       "phone": "787220938",
       "address": "New Village",
-      "postcode": "11-111",
+      "postcode": "11-112",
       "id": 5
+    },
+    {
+      "firstname": "Andrzej",
+      "surname": "Suchy",
+      "email": "sychy@o2.pl",
+      "phone": "3435546657",
+      "address": "Polska",
+      "postcode": "45-233",
+      "id": 7
+    },
+    {
+      "firstname": "Grzegorz",
+      "surname": "Walski",
+      "email": "grzegorz@gmail.com",
+      "phone": "777234456",
+      "address": "Warszaw",
+      "postcode": "11-123",
+      "id": 8
     }
   ]
 }
