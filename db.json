@@ -17,6 +17,12 @@
       "username": "Andrzej",
       "password": "12345",
       "id": 3
+    },
+    {
+      "email": "kinga.w.burak@gmail.com",
+      "username": "brokuł",
+      "password": "Bielsk32",
+      "id": 4
     }
   ],
   "clients": [
@@ -30,13 +36,13 @@
       "postcode": "11-111"
     },
     {
-      "id": 3,
-      "firstname": "Test3",
-      "surname": "Testowy",
-      "email": "test@test.pl",
-      "phone": "777445666",
+      "firstname": "Kinga",
+      "surname": "Brokuł",
+      "email": "kinga.w.burak@gmail.com",
+      "phone": "793921201",
       "address": "City ul. Street 12",
-      "postcode": "11-111"
+      "postcode": "11-111",
+      "id": 3
     },
     {
       "firstname": "Dawid",

@@ -1,0 +1,14 @@
+<mat-form-field appearance="fill" class="prefix">
+  <mat-label>Prefix</mat-label>
+  <input matInput placeholder="test@gmail.com" formControlName="email" />
+  <mat-error *ngIf="controls.email.invalid">{{
+    getErrorMessage(controls.email)
+  }}</mat-error>
+</mat-form-field>
+<mat-form-field appearance="fill" class="number">
+  <mat-label>Phone Number</mat-label>
+  <input matInput placeholder="test@gmail.com" formControlName="email" />
+  <mat-error *ngIf="controls.email.invalid">{{
+    getErrorMessage(controls.email)
+  }}</mat-error>
+</mat-form-field>

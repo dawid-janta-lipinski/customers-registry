@@ -17,6 +17,9 @@ export class FormsService {
     if (control.hasError('maxLength')) {
       return 'This field should have max 50 characters';
     }
+    if (control.hasError('ivalidPostcode')) {
+      return 'Postcode should be formatted like xx-xxx';
+    }
 
     return control.hasError('email') ? 'Not a valid email' : '';
   }
