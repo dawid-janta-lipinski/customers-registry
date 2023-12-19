@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { combineLatest, Subscription } from 'rxjs';
 import {
   ControlValueAccessor,
   FormControl,
   NG_VALUE_ACCESSOR,
+  Validators,
 } from '@angular/forms';
 
 @Component({
@@ -18,29 +19,29 @@ import {
     },
   ],
 })
-export class PhoneControlComponent implements ControlValueAccessor {
-  numberPrefixControl = new FormControl('');
-  numberControl = new FormControl('');
+export class PhoneControlComponent implements ControlValueAccessor, OnDestroy {
+  numberPrefixControl = new FormControl('', [Validators.required]);
+  numberControl = new FormControl('', [Validators.required]);
+  sub = new Subscription();
 
   onChange = (value: string | null) => {};
   onTouch = () => {};
 
   constructor() {
-    combineLatest([
-      this.numberPrefixControl.valueChanges,
-      this.numberControl.valueChanges,
-    ]).subscribe(([prefix, number]) => {
-      if (prefix && number) {
-        this.onChange(`+${prefix}${number}`);
-      } else {
-        this.onChange(null);
-      }
-    });
+    this.sub.add(
+      combineLatest([
+        this.numberPrefixControl.valueChanges,
+        this.numberControl.valueChanges,
+      ]).subscribe(([prefix, number]) => {
+        if (prefix && number) {
+          this.onChange(`+${prefix}${number}`);
+        } else {
+          this.onChange(null);
+        }
+      }),
+    );
   }
 
-  writeValue(obj: any): void {
-    throw new Error('Method not implemented.');
-  }
   registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
@@ -48,6 +49,24 @@ export class PhoneControlComponent implements ControlValueAccessor {
     this.onTouch = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    if (isDisabled) {
+      this.numberControl.disable();
+      this.numberPrefixControl.disable();
+    } else {
+      this.numberControl.enable();
+      this.numberPrefixControl.enable();
+    }
+  }
+  writeValue(value: string): void {
+    const valueWithoutPlus = value.replace('+', '');
+    const prefix = valueWithoutPlus.slice(0, 2);
+    const number = valueWithoutPlus.slice(2);
+
+    this.numberPrefixControl.setValue(prefix);
+    this.numberControl.setValue(number);
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

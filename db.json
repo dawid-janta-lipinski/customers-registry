@@ -70,6 +70,15 @@
       "address": "Warszaw",
       "postcode": "11-123",
       "id": 8
+    },
+    {
+      "firstname": "Jerzy",
+      "surname": "Szulc ",
+      "email": "szulc@02.pl",
+      "phone": "++32434343434",
+      "address": "Nddd",
+      "postcode": "12-234",
+      "id": 9
     }
   ]
 }

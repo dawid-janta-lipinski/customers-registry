@@ -16,7 +16,6 @@ import { Observer } from 'rxjs';
 export class ClientFormComponent implements OnInit {
   clientForm!: FormGroup<PostClientForm>;
   errorMessage = '';
-  succesfullyAddedClient = false;
   @Input() editMode = false;
   @Input() client!: Client;
   @Output() closeDialog = new EventEmitter<void>();
@@ -26,7 +25,6 @@ export class ClientFormComponent implements OnInit {
       if (this.editMode) {
         this.emitCloseDialog();
       }
-      this.succesfullyAddedClient = true;
       this.router.navigate(['clients']);
     },
     error: () => {

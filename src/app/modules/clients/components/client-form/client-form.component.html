@@ -29,13 +29,7 @@
       </mat-form-field>
     </div>
     <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Phone</mat-label>
-        <input matInput formControlName="phone" />
-        <mat-error *ngIf="controls.phone.invalid">{{
-          getErrorMessage(controls.phone)
-        }}</mat-error>
-      </mat-form-field>
+      <app-phone-control formControlName="phone"></app-phone-control>
     </div>
     <div>
       <mat-form-field appearance="fill">
@@ -75,7 +69,6 @@
         {{ editMode ? 'Edit Client' : 'Add Client' }}
       </button>
     </div>
-    <app-alert *ngIf="succesfullyAddedClient" [text]="errorMessage"></app-alert>
   </form>
   <app-alert *ngIf="errorMessage" [text]="errorMessage"></app-alert>
 </div>
