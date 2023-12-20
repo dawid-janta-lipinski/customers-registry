@@ -5,9 +5,9 @@ import { ClientFormComponent } from './components/client-form/client-form.compon
 import { ClientComponent } from './components/client/client.component';
 
 const routes: Routes = [
-  { path: 'clients', component: ClientsComponent },
-  { path: 'clients/add', component: ClientFormComponent },
-  { path: 'clients/:id', component: ClientComponent },
+  { path: '', component: ClientsComponent },
+  { path: 'add', component: ClientFormComponent },
+  { path: ':id', component: ClientComponent },
 ];
 
 @NgModule({
