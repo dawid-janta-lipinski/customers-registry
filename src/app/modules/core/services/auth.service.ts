@@ -49,6 +49,10 @@ export class AuthService {
     localStorage.removeItem('user');
   }
 
+  isLoggedIn(): boolean {
+    return !!this.user.getValue();
+  }
+
   autoLogin() {
     const userData: { email: string; username: string } = JSON.parse(
       localStorage.getItem('user') as string,
